@@ -15,7 +15,6 @@ app.use(cors());
         subject: "Computer Science",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/ComputerScience.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -25,7 +24,6 @@ app.use(cors());
         subject: "Sport",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/Sport.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -35,7 +33,6 @@ app.use(cors());
         subject: "French",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/French.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -45,7 +42,6 @@ app.use(cors());
         subject: "Art",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/Art.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -55,7 +51,6 @@ app.use(cors());
         subject: "History",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/History.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     }
 ];
