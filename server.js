@@ -14,7 +14,7 @@ app.use(cors());
         id: 1001, // Lesson ID.
         subject: "Computer Science",
         location: "Location: Hendon",
-        price: 50,
+        price: 5,
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -23,7 +23,7 @@ app.use(cors());
         id: 1002, // Lesson ID.
         subject: "Sport",
         location: "Location: Hendon",
-        price: 50,
+        price: 10,
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -32,7 +32,7 @@ app.use(cors());
         id: 1003, // Lesson ID.
         subject: "French",
         location: "Location: Hendon",
-        price: 50,
+        price: 15,
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -41,7 +41,7 @@ app.use(cors());
         id: 1004, // Lesson ID.
         subject: "Art",
         location: "Location: Hendon",
-        price: 50,
+        price: 20,
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -50,7 +50,7 @@ app.use(cors());
         id: 1005, // Lesson ID.
         subject: "History",
         location: "Location: Hendon",
-        price: 50,
+        price: 25,
         availableSlot: 5 // This availability field tracks available slots for purchase.
     }
 ];
