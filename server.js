@@ -1,5 +1,30 @@
 var express = require("express"); // Requires the Express module
 var cors = require("cors");
+var path = require("path");
+
+// Loads the configuration from config.env to process.env
+require("dotenv").config({ path: "./config.env" });
+
+// MongoDB connection setup
+//const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient } = require("mongodb");
+const uri = process.env.MONGODB_PREFIX + process.env.MONGODB_USERNAME + ":" + 
+process.env.MONGODB_PASSWORD + process.env.MONGODB_URL;
+const client = new MongoClient(uri);
+
+// Connect to the After School Lesson database
+const db = client.db("AfterSchoolLesson");
+
+async function connectToMongoDB() {
+    try {
+        await client.connect();
+        console.log("You successfully connected to MongoDB!");
+        return client;
+    } catch (err) {
+        console.dir(err);
+    }
+}
+connectToMongoDB();
 
 // Calls the express function to start a New Express application
 var app = express();
@@ -13,8 +38,9 @@ app.use(function(request, response, next) {
     next();
 });
 
-// Lessons data (without image files)
-    var lessonsArray = [
+// GET route to get lesson data from server
+    app.get("/lessons",function(request, response) {
+        let lessonsArray = [
     
     // Computer Science lesson
     {
@@ -66,10 +92,19 @@ app.use(function(request, response, next) {
         image: "http://localhost:3000/images/History.jpg"
     }
 ];
+response.json(lessonsArray);
+});
 
 // GET route /lessons that returns a JSON containing the lessons data
-app.get("/lessons", function(request, response) { 
-    response.json(lessonsArray);
+//app.get("/lessons", function(request, response) { 
+    //response.json(lessonsArray);
+//});
+
+// GET /lessons route that gets the lesson data from the database
+app.get("/lessons", async function(request, response) {
+    let collection = await db.collection("lessons");
+    let results = await collection.find({}).toArray();
+    response.send(results);
 });
 
 // Static File middleware that returns a requested image
@@ -83,7 +118,7 @@ app.use("/images", function(request, response) {
 // POST route that takes information about new order
 app.post("/orders", function(request, response){
     var body = request.body;
-
+    
     console.log("Order received"); 
     console.log("First Name: " + body.firstName);
     console.log("Last Name: " + body.lastName);
@@ -92,6 +127,28 @@ app.post("/orders", function(request, response){
     
     response.json({message:"Order received!"});
 });
+
+// POST route that sends order information to the Orders table
+//app.post("/orders", async function(request, response) {
+    //var body = request.body;
+    //let collection = await db.collection("orders");
+    //let result = await collection.insertOne(body);
+    //response.send(result);
+//});
+
+// PUT route example (Back-End)
+app.put("/lessons/:_id", async function(request, response) {
+    var body = request.body;
+    let collection = await db.collection("products");
+
+    const query = { _id: new ObjectId(request.params._id) };
+    const updates = {
+        $set: request.body
+    };
+
+    result = await collection.updateOne(query, updates);
+});
+
 
 // Final middleware route that returns a 404 error if an unrecognised request comes in to the server
 app.use(function(request, response) {
