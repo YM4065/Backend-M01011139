@@ -6,8 +6,7 @@ var path = require("path");
 require("dotenv").config({ path: "./config.env" });
 
 // MongoDB connection setup
-//const { MongoClient, ObjectId } = require("mongodb");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const uri = process.env.MONGODB_PREFIX + process.env.MONGODB_USERNAME + ":" + 
 process.env.MONGODB_PASSWORD + process.env.MONGODB_URL;
 const client = new MongoClient(uri);
@@ -38,9 +37,7 @@ app.use(function(request, response, next) {
     next();
 });
 
-// GET route to get lesson data from server
-    app.get("/lessons",function(request, response) {
-        let lessonsArray = [
+var lessonsArray = [
     
     // Computer Science lesson
     {
@@ -92,13 +89,6 @@ app.use(function(request, response, next) {
         image: "http://localhost:3000/images/History.jpg"
     }
 ];
-response.json(lessonsArray);
-});
-
-// GET route /lessons that returns a JSON containing the lessons data
-//app.get("/lessons", function(request, response) { 
-    //response.json(lessonsArray);
-//});
 
 // GET /lessons route that gets the lesson data from the database
 app.get("/lessons", async function(request, response) {
@@ -115,40 +105,36 @@ app.use("/images", function(request, response) {
     response.status(404).send("Image not found!");
 });
 
-// POST route that takes information about new order
-app.post("/orders", function(request, response){
+// POST route that sends order information to the Orders table
+app.post("/orders", async function(request, response) {
     var body = request.body;
-    
-    console.log("Order received"); 
-    console.log("First Name: " + body.firstName);
-    console.log("Last Name: " + body.lastName);
-    console.log("Phone Number: " + body.phoneNumber);
-    console.log("Lesson IDs: " + body.lessonIDs);
-    
-    response.json({message:"Order received!"});
+    let collection = await db.collection("orders");
+    let result = await collection.insertOne(body);
+    response.send(result);
 });
 
-// POST route that sends order information to the Orders table
-//app.post("/orders", async function(request, response) {
-    //var body = request.body;
-    //let collection = await db.collection("orders");
-    //let result = await collection.insertOne(body);
-    //response.send(result);
-//});
-
-// PUT route example (Back-End)
+// PUT /lessons/ route to server.js that will update information about an exising lesson in the database
 app.put("/lessons/:_id", async function(request, response) {
-    var body = request.body;
-    let collection = await db.collection("products");
+    try {
+        var body = request.body;
+        let collection = await db.collection("lessons");
+        let tempid = request.params._id;
 
-    const query = { _id: new ObjectId(request.params._id) };
-    const updates = {
-        $set: request.body
+        const query = { _id: new ObjectId(tempid) };
+        
+        const updates = {
+            $set: request.body
     };
 
-    result = await collection.updateOne(query, updates);
-});
+    const result = await collection.updateOne(query, updates);
 
+    response.send(result);
+
+    } catch (error) {
+        console.error("Error updating lesson:", error);
+        response.status(500).send("Unable to update lesson")
+    }
+});
 
 // Final middleware route that returns a 404 error if an unrecognised request comes in to the server
 app.use(function(request, response) {
