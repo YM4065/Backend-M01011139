@@ -11,6 +11,9 @@ const uri = process.env.MONGODB_PREFIX + process.env.MONGODB_USERNAME + ":" +
 process.env.MONGODB_PASSWORD + process.env.MONGODB_URL;
 const client = new MongoClient(uri);
 
+// Render connection setup
+const port = process.env.PORT||3000;
+
 // Connect to the After School Lesson database
 const db = client.db("AfterSchoolLesson");
 
@@ -142,8 +145,8 @@ app.use(function(request, response) {
 });
 
 // Start the server
-app.listen(3000, function() {
-    console.log("App started on port 3000");
+app.listen(port, function() {
+    console.log("App started on port " + port);
 });
 
 
