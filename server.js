@@ -109,23 +109,12 @@ app.use("/images", function(request, response) {
 });
 
 // POST route that sends order information to the Orders table
-app.post("/orders", async function(request, response) {
-    try {
-        console.log("POST ORDERS ROUTE FROM UPDATED SERVER");
-
-        var body = request.body;
-        let collection = await db.collection("orders");
-        let result = await collection.insertOne(body);
-
-        response.status(200).json({
-            acknowledged: result.acknowledged,
-            insertedId: result.insertedId
-        });
-
-    } catch (error) {
-        console.error("Order error:", error);
-        response.status(500).json({ error: error.message });
-    }
+app.post("/orders", async function(request, response){
+    var body = request.body;
+    let collection = await db.collection("orders");
+    let result = await collection.insertOne(body);
+    response.send(result);
+    console.log(result);
 });
 
 // PUT /lessons/ route to server.js that will update information about an exising lesson in the database
