@@ -140,6 +140,15 @@ app.put("/lessons/:_id", async function(request, response) {
     }
 });
 
+// Add and delete orders
+app.delete("/orders/:id", async function (req, res) {
+    const query = { _id: new ObjectId(req.params.id) };
+    const collection = db.collection("orders");
+    let result = await collection.deleteOne(query);
+    console.log(result);
+    res.send(result).status(200);
+});
+
 // Final middleware route that returns a 404 error if an unrecognised request comes in to the server
 app.use(function(request, response) {
     response.status(404).send("Page not found!");
