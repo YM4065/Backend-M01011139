@@ -98,7 +98,7 @@ var lessonsArray = [
         subject: "Spanish",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/Spanish.jpg",
+        image: "http://localhost:3000/images/Spanish.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -108,7 +108,7 @@ var lessonsArray = [
         subject: "German",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/German.jpg",
+        image: "http://localhost:3000/images/German.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -118,7 +118,7 @@ var lessonsArray = [
         subject: "English Literature",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/EnglishLiterature.jpg",
+        image: "http://localhost:3000/images/EnglishLiterature.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -128,7 +128,7 @@ var lessonsArray = [
         subject: "Maths",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/Maths.jpg",
+        image: "http://localhost:3000/images/Maths.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     },
 
@@ -138,7 +138,7 @@ var lessonsArray = [
         subject: "Geography",
         location: "Location: Hendon",
         price: 50,
-        image: "AfterSchoolLessonImages/Geography.jpg",
+        image: "http://localhost:3000/images/Geography.jpg",
         availableSlot: 5 // This availability field tracks available slots for purchase.
     }
 ];
