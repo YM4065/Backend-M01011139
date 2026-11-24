@@ -234,11 +234,6 @@ app.use(function(request, response) {
     response.status(404).send("Page not found!");
 });
 
-// Start the server
-//app.listen(port, function() {
-    //console.log("App started on port " + port);
-//});
-
 // Connect to MongoDB and start the server
 connectToMongoDB();
 
