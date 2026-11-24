@@ -22,16 +22,18 @@ async function connectToMongoDB() {
         await client.connect();
         console.log("You successfully connected to MongoDB!");
 
-        // Insert lessons if the collection is empty
+        // Insert missing lessons into MongoDB
         await insertLessons();
 
-        return client;
+        // Start the server after MongoDB is ready
+        app.listen(port, function() {
+            console.log("App started on port " + port);
+        });
 
     } catch (err) {
-        console.dir(err);
+        console.error("Unable to connect to MongoDB:", err);
     }
 }
-connectToMongoDB();
 
 // Calls the express function to start a New Express application
 var app = express();
@@ -233,9 +235,12 @@ app.use(function(request, response) {
 });
 
 // Start the server
-app.listen(port, function() {
-    console.log("App started on port " + port);
-});
+//app.listen(port, function() {
+    //console.log("App started on port " + port);
+//});
+
+// Connect to MongoDB and start the server
+connectToMongoDB();
 
 
 
