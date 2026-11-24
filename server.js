@@ -98,8 +98,8 @@ var lessonsArray = [
         subject: "Spanish",
         location: "Location: Hendon",
         price: 50,
-        image: "http://localhost:3000/images/Spanish.jpg",
-        availableSlot: 5 // This availability field tracks available slots for purchase.
+        availableSlot: 5, // This availability field tracks available slots for purchase.
+        image: "http://localhost:3000/images/Spanish.jpg"
     },
 
     // German lesson
@@ -108,8 +108,8 @@ var lessonsArray = [
         subject: "German",
         location: "Location: Hendon",
         price: 50,
-        image: "http://localhost:3000/images/German.jpg",
-        availableSlot: 5 // This availability field tracks available slots for purchase.
+        availableSlot: 5, // This availability field tracks available slots for purchase.
+        image: "http://localhost:3000/images/German.jpg"
     },
 
     // English Literature lesson
@@ -118,8 +118,8 @@ var lessonsArray = [
         subject: "English Literature",
         location: "Location: Hendon",
         price: 50,
-        image: "http://localhost:3000/images/EnglishLiterature.jpg",
-        availableSlot: 5 // This availability field tracks available slots for purchase.
+        availableSlot: 5, // This availability field tracks available slots for purchase.
+        image: "http://localhost:3000/images/EnglishLiterature.jpg"
     },
 
     // Maths lesson
@@ -128,8 +128,8 @@ var lessonsArray = [
         subject: "Maths",
         location: "Location: Hendon",
         price: 50,
-        image: "http://localhost:3000/images/Maths.jpg",
-        availableSlot: 5 // This availability field tracks available slots for purchase.
+        availableSlot: 5, // This availability field tracks available slots for purchase.
+        image: "http://localhost:3000/images/Maths.jpg"
     },
 
     // Geography lesson
@@ -138,8 +138,8 @@ var lessonsArray = [
         subject: "Geography",
         location: "Location: Hendon",
         price: 50,
-        image: "http://localhost:3000/images/Geography.jpg",
-        availableSlot: 5 // This availability field tracks available slots for purchase.
+        availableSlot: 5, // This availability field tracks available slots for purchase.
+        image: "http://localhost:3000/images/Geography.jpg"
     }
 ];
 
