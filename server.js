@@ -102,7 +102,7 @@ var lessonsArray = [
         id: 1006, // Lesson ID.
         subject: "Spanish",
         location: "Location: Hendon",
-        price: 50,
+        price: 30,
         availableSlot: 5, // This availability field tracks available slots for purchase.
         image: "https://backend-m01011139.onrender.com/images/Spanish.jpg"
     },
@@ -112,7 +112,7 @@ var lessonsArray = [
         id: 1007, // Lesson ID.
         subject: "German",
         location: "Location: Hendon",
-        price: 50,
+        price: 35,
         availableSlot: 5, // This availability field tracks available slots for purchase.
         image: "https://backend-m01011139.onrender.com/images/German.jpg"
     },
@@ -122,7 +122,7 @@ var lessonsArray = [
         id: 1008, // Lesson ID.
         subject: "English Literature",
         location: "Location: Hendon",
-        price: 50,
+        price: 40,
         availableSlot: 5, // This availability field tracks available slots for purchase.
         image: "https://backend-m01011139.onrender.com/images/EnglishLiterature.jpg"
     },
@@ -132,7 +132,7 @@ var lessonsArray = [
         id: 1009, // Lesson ID.
         subject: "Maths",
         location: "Location: Hendon",
-        price: 50,
+        price: 45,
         availableSlot: 5, // This availability field tracks available slots for purchase.
         image: "https://backend-m01011139.onrender.com/images/Maths.jpg"
     },
