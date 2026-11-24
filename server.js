@@ -153,7 +153,7 @@ async function insertLessons() {
     try {
         let collection = db.collection("lessons");
 
-        for (const lesson of lesonsArray) {
+        for (const lesson of lessonsArray) {
 
             await collection.updateOne(
                 { id: lesson.id }, // Check using the lesson ID
