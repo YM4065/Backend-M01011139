@@ -21,7 +21,12 @@ async function connectToMongoDB() {
     try {
         await client.connect();
         console.log("You successfully connected to MongoDB!");
+
+        // Insert lessons if the collection is empty
+        await insertLessons();
+
         return client;
+
     } catch (err) {
         console.dir(err);
     }
@@ -142,6 +147,29 @@ var lessonsArray = [
         image: "http://localhost:3000/images/Geography.jpg"
     }
 ];
+
+// Automatically populate MongoDB with 10 lessons
+async function insertLessons() {
+    try {
+        let collection = db.collection("lessons");
+
+        for (const lesson of lesonsArray) {
+
+            await collection.updateOne(
+                { id: lesson.id }, // Check using the lesson ID
+
+                { $setOnInsert: lesson }, // Insert only if it doesn't exist
+
+                { upsert: true }
+            );
+        }
+
+            console.log("All 10 lessons are available in MongoDB!");
+
+    } catch (error) {
+        console.error("Error inserting lessons:", error);
+    }
+}
 
 // GET /lessons route that gets the lesson data from the database
 app.get("/lessons", async function(request, response) {
