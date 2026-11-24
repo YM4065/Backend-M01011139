@@ -150,7 +150,7 @@ var lessonsArray = [
     }
 ];
 
-// Automatically populate MongoDB with 10 lessons
+// Automatically insert missing lessons and update existing lesson information
 async function insertLessons() {
     try {
         let collection = db.collection("lessons");
@@ -160,13 +160,26 @@ async function insertLessons() {
             await collection.updateOne(
                 { id: lesson.id }, // Check using the lesson ID
 
-                { $setOnInsert: lesson }, // Insert only if it doesn't exist
+                {
+                    // Update existing lesson information
+                    $set: {
+                        subject: lesson.subject,
+                        location: lesson.location,
+                        price: lesson.price,
+                        image: lesson.image
+                    },
+
+                    // Set availability only when inserting a new lesson
+                    $setOnInsert: {
+                        availableSlot: lesson.availableSlot
+                     }
+                },
 
                 { upsert: true }
             );
         }
 
-            console.log("All 10 lessons are available in MongoDB!");
+            console.log("All 10 lessons successfully updated in MongoDB!");
 
     } catch (error) {
         console.error("Error inserting lessons:", error);
@@ -181,7 +194,7 @@ app.get("/lessons", async function(request, response) {
 });
 
 // Static File middleware that returns a requested image
-app.use("/images", express.static("staticFiles"));
+app.use("/images", express.static(path.join(__dirname, "staticFiles")));
 
 // Middleware to return an error if the requested image does not exist
 app.use("/images", function(request, response) {
